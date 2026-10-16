@@ -1,0 +1,451 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Escena Hermes · Storyboard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Stardos+Stencil:wght@400;700&family=Special+Elite&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --beige:#d8ccb2;
+    --beige-2:#c7b999;
+    --beige-3:#e9e0cc;
+    --ink:#121110;
+    --ink-2:#2b2925;
+    --white:#f6f3ec;
+    --plastic:rgba(246,243,236,.38);
+    --gutter:16px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{background:var(--ink)}
+  body{
+    background:var(--ink);
+    color:var(--ink);
+    font-family:"Space Mono",ui-monospace,monospace;
+    font-size:14px;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+    min-height:100vh;
+    position:relative;
+  }
+  /* grano global */
+  body::before{
+    content:"";position:fixed;inset:0;pointer-events:none;z-index:50;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .55 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    opacity:.22;mix-blend-mode:multiply;
+  }
+
+  /* ---------- CABECERA ---------- */
+  header{
+    padding:28px var(--gutter) 34px;
+    color:var(--white);
+    position:relative;
+    border-bottom:2px dashed rgba(246,243,236,.25);
+  }
+  .tag-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:22px}
+  .tag{
+    font-size:10px;letter-spacing:.14em;text-transform:uppercase;
+    border:1px solid rgba(246,243,236,.45);padding:3px 8px;
+    color:var(--beige);
+  }
+  .tag.solid{background:var(--beige);color:var(--ink);border-color:var(--beige)}
+  h1{
+    font-family:"Stardos Stencil",Impact,sans-serif;
+    font-weight:700;
+    font-size:clamp(46px,15vw,120px);
+    line-height:.86;
+    letter-spacing:-.01em;
+    text-transform:uppercase;
+    color:var(--beige);
+  }
+  h1 span{display:block;color:var(--white);
+    -webkit-text-stroke:0;}
+  h1 em{font-style:normal;display:block;color:transparent;-webkit-text-stroke:1.5px var(--beige)}
+  .lede{
+    margin-top:18px;max-width:46ch;color:rgba(246,243,236,.75);font-size:13px
+  }
+  .meta{
+    margin-top:20px;display:grid;grid-template-columns:auto 1fr;gap:4px 14px;
+    font-size:11px;color:rgba(246,243,236,.6);text-transform:uppercase;letter-spacing:.08em
+  }
+  .meta b{color:var(--beige);font-weight:400}
+  .barcode{
+    margin-top:22px;height:34px;width:180px;
+    background:repeating-linear-gradient(90deg,var(--beige) 0 2px,transparent 2px 4px,var(--beige) 4px 5px,transparent 5px 9px,var(--beige) 9px 12px,transparent 12px 13px);
+    opacity:.8
+  }
+
+  /* ---------- TIRA DE CUADROS ---------- */
+  main{
+    padding:28px var(--gutter) 40px;
+    display:grid;gap:44px;
+  }
+
+  .panel{
+    position:relative;
+    background:var(--beige);
+    padding:14px 14px 22px;
+    /* bordes rasgados */
+    clip-path:polygon(0 1.2%,4% 0,11% .8%,19% 0,28% 1%,37% .2%,46% 1.1%,55% 0,63% .9%,72% .1%,81% 1%,90% 0,97% .7%,100% 0,100% 98.6%,95% 100%,86% 99.1%,77% 100%,68% 99.2%,59% 100%,50% 99%,41% 100%,32% 99.3%,23% 100%,14% 99%,6% 100%,0 99%);
+  }
+  /* textura de plástico arrugado */
+  .panel::before{
+    content:"";position:absolute;inset:0;pointer-events:none;z-index:3;
+    background:
+      linear-gradient(115deg,transparent 0 30%,rgba(255,255,255,.35) 38%,transparent 46%,transparent 62%,rgba(255,255,255,.22) 68%,transparent 74%),
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='c'%3E%3CfeTurbulence type='turbulence' baseFrequency='.012 .02' numOctaves='4' seed='7'/%3E%3CfeDiffuseLighting lighting-color='%23fff' surfaceScale='3'%3E%3CfeDistantLight azimuth='45' elevation='55'/%3E%3C/feDiffuseLighting%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23c)'/%3E%3C/svg%3E");
+    background-size:auto,400px 400px;
+    mix-blend-mode:multiply;opacity:.55;
+  }
+  .panel > *{position:relative;z-index:2}
+
+  .panel-head{
+    display:flex;align-items:flex-end;justify-content:space-between;gap:12px;
+    border-bottom:2px solid var(--ink);padding-bottom:8px;margin-bottom:12px
+  }
+  .num{
+    font-family:"Stardos Stencil",Impact,sans-serif;font-weight:700;
+    font-size:64px;line-height:.8;color:var(--ink);
+  }
+  .panel-head .label{text-align:right;font-size:10px;letter-spacing:.14em;text-transform:uppercase;line-height:1.4}
+  .panel-head .label b{display:block;font-size:11px}
+
+  /* encuadre: dibujo dentro de bolsa plástica */
+  .frame{
+    position:relative;
+    background:var(--white);
+    border:2px solid var(--ink);
+    aspect-ratio:3/2;z-index:4;
+    overflow:hidden;
+  }
+  .frame img{
+    width:100%;height:100%;object-fit:cover;display:block;
+    mix-blend-mode:multiply;
+    filter:contrast(1.25) sepia(.25);
+  }
+  /* capa "bolsa" translúcida */
+  .frame::after{
+    content:"";position:absolute;inset:0;pointer-events:none;
+    background:
+      linear-gradient(160deg,rgba(255,255,255,.5) 0%,transparent 22%,transparent 58%,rgba(255,255,255,.35) 64%,transparent 72%),
+      radial-gradient(120% 70% at 85% 10%,rgba(255,255,255,.3),transparent 50%);
+    mix-blend-mode:screen;
+  }
+  /* cinta de embalaje */
+  .tape{
+    position:absolute;z-index:4;width:92px;height:26px;
+    background:linear-gradient(180deg,rgba(233,224,204,.75),rgba(199,185,153,.6));
+    border-left:1px dashed rgba(18,17,16,.25);border-right:1px dashed rgba(18,17,16,.25);
+    box-shadow:0 1px 0 rgba(0,0,0,.08);
+  }
+  .tape.tl{top:-8px;left:-22px;transform:rotate(-34deg)}
+  .tape.br{bottom:-8px;right:-22px;transform:rotate(-30deg)}
+  .stamp{
+    position:absolute;z-index:4;top:10px;right:10px;
+    font-family:"Stardos Stencil",sans-serif;font-weight:700;font-size:12px;letter-spacing:.12em;
+    color:var(--ink);border:2px solid var(--ink);padding:2px 8px;
+    transform:rotate(4deg);background:rgba(216,204,178,.85);text-transform:uppercase
+  }
+  .caption{
+    font-family:"Special Elite",monospace;font-size:13px;
+    margin-top:8px;display:flex;justify-content:space-between;gap:10px;color:var(--ink-2)
+  }
+
+  h2{
+    font-family:"Stardos Stencil",Impact,sans-serif;font-weight:700;
+    font-size:clamp(28px,8.5vw,40px);line-height:.95;text-transform:uppercase;
+    margin:18px 0 4px;
+  }
+  .sub{font-family:"Special Elite",monospace;font-size:14px;margin-bottom:14px;color:var(--ink-2)}
+
+  .spec{display:grid;gap:12px}
+  .row{display:grid;grid-template-columns:1fr;gap:2px;border-top:1px dashed rgba(18,17,16,.45);padding-top:8px}
+  .k{font-size:10px;letter-spacing:.16em;text-transform:uppercase;font-weight:700}
+  .v{font-size:13px}
+  .v ul{list-style:none;display:grid;gap:6px;margin-top:2px}
+  .v li{padding-left:16px;position:relative}
+  .v li::before{content:"✕";position:absolute;left:0;top:0;font-size:10px}
+  .note{
+    margin-top:14px;background:var(--ink);color:var(--beige-3);
+    padding:12px 12px 12px 14px;font-size:12px;
+    border-left:6px solid var(--beige-2)
+  }
+  .note .k{color:var(--beige);display:block;margin-bottom:4px}
+  .intent{
+    margin-top:14px;font-family:"Special Elite",monospace;font-size:16px;line-height:1.35;
+    padding:10px 12px;background:var(--white);border:2px solid var(--ink);
+    box-shadow:4px 4px 0 var(--ink);
+  }
+  .intent .k{display:block;font-family:"Space Mono",monospace;margin-bottom:4px}
+
+
+  /* emociones + pautas físicas */
+  .emo{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:2px 0 14px}
+  .emo .k{width:100%}
+  .chip{
+    font-family:"Stardos Stencil",sans-serif;font-weight:700;text-transform:uppercase;
+    font-size:15px;letter-spacing:.05em;padding:4px 10px;border:2px solid var(--ink)
+  }
+  .chip.dark{background:var(--ink);color:var(--beige)}
+  .chip.light{background:var(--white)}
+  .emo .arrow{font-size:18px;font-weight:700}
+  .pautas{
+    margin:0 0 16px;border:2px solid var(--ink);background:rgba(246,243,236,.45)
+  }
+  .pautas-title{
+    background:var(--ink);color:var(--beige);font-size:10px;letter-spacing:.16em;
+    text-transform:uppercase;font-weight:700;padding:5px 10px;display:flex;justify-content:space-between
+  }
+  .pautas dl{display:grid;grid-template-columns:auto 1fr}
+  .pautas dt,.pautas dd{padding:7px 10px;border-top:1px dashed rgba(18,17,16,.4);font-size:13px}
+  .pautas dt{font-size:10px;letter-spacing:.12em;text-transform:uppercase;font-weight:700;padding-top:9px}
+  .pautas dl > :nth-child(-n+2){border-top:0}
+  .tension{display:flex;align-items:center;gap:8px}
+  .tension .bar{flex:1;max-width:140px;height:10px;border:1.5px solid var(--ink);
+    background:linear-gradient(90deg,var(--ink) 70%,transparent 70%)}
+
+  /* ---------- cuadro 3: sin dibujo ---------- */
+  .frame.pending{
+    background:
+      repeating-linear-gradient(-45deg,transparent 0 14px,rgba(18,17,16,.07) 14px 16px),
+      var(--white);
+    display:grid;place-items:center;text-align:center;
+  }
+  .frame.pending svg{position:absolute;inset:0;width:100%;height:100%}
+  .pending-msg{
+    position:relative;z-index:2;
+    font-family:"Stardos Stencil",sans-serif;font-weight:700;text-transform:uppercase;
+    font-size:clamp(18px,6vw,28px);line-height:1;letter-spacing:.04em;
+    background:var(--ink);color:var(--beige);padding:8px 12px;transform:rotate(-3deg)
+  }
+  .pending-msg small{display:block;font-family:"Space Mono",monospace;font-size:10px;letter-spacing:.14em;font-weight:400;margin-top:6px;color:var(--white)}
+
+  /* conectores entre cuadros */
+  .cut{
+    display:flex;align-items:center;gap:10px;color:var(--beige);
+    font-size:10px;letter-spacing:.2em;text-transform:uppercase;margin:-24px 0
+  }
+  .cut::before,.cut::after{content:"";flex:1;height:0;border-top:2px dashed rgba(216,204,178,.5)}
+
+  /* intensidad creciente */
+  .meter{display:flex;gap:3px;margin-top:6px}
+  .meter i{display:block;width:10px;height:10px;border:1.5px solid var(--ink)}
+  .meter i.on{background:var(--ink)}
+
+  footer{
+    padding:24px var(--gutter) 40px;color:rgba(246,243,236,.5);font-size:11px;
+    border-top:2px dashed rgba(246,243,236,.25);letter-spacing:.06em
+  }
+  footer b{color:var(--beige);font-weight:400}
+
+  /* ---------- pantallas más anchas ---------- */
+  @media (min-width:760px){
+    :root{--gutter:32px}
+    main{grid-template-columns:repeat(2,1fr);gap:40px 28px;align-items:start}
+    .cut{display:none}
+    .row{grid-template-columns:110px 1fr;gap:12px}
+  }
+  @media (min-width:1180px){
+    main{grid-template-columns:repeat(3,1fr);max-width:1500px;margin:0 auto}
+    header,footer{max-width:1500px;margin:0 auto}
+  }
+  .dl{display:inline-block;margin-top:22px;font-size:11px;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--ink);background:var(--beige);padding:8px 14px;text-decoration:none;border:2px solid var(--beige)}
+  .dl:hover{background:transparent;color:var(--beige)}
+  .col-a,.col-b{display:contents}
+  @page{size:A4 landscape;margin:0}
+  @media print{
+    html,body{-webkit-print-color-adjust:exact;print-color-adjust:exact;background:var(--ink);width:100%}
+    body::before{position:absolute}
+    header{max-width:none;margin:0;height:209mm;padding:22mm 20mm;border:0;
+      display:flex;flex-direction:column;justify-content:center;break-after:page}
+    h1{font-size:120px}
+    main{display:block;max-width:none;margin:0;padding:0}
+    .cut,footer,.dl{display:none}
+    .panel{
+      height:209mm;overflow:hidden;break-after:page;break-inside:avoid;
+      margin:0;padding:11mm 14mm;clip-path:none;
+      display:grid;grid-template-columns:1fr 1fr;grid-template-rows:auto 1fr;column-gap:11mm;align-content:start
+    }
+    .panel-head{grid-column:1/-1}
+    .col-a,.col-b{display:block}
+    h2{font-size:28px;margin-top:10px}
+    .sub{margin-bottom:10px}
+    .row{grid-template-columns:100px 1fr;gap:10px}
+    .v,.pautas dt,.pautas dd{font-size:12px}
+    .pautas dt,.pautas dd{padding:5px 10px}
+    .intent{font-size:14px}
+    .note{font-size:11px}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="tag-row">
+    <span class="tag solid">Storyboard</span>
+    <span class="tag">3 cuadros</span>
+    <span class="tag">11 intérpretes</span>
+  </div>
+  <h1><span>Escena</span>Hermes<em>Cosecha</em></h1>
+  <p class="lede">Un mensaje llega a la manada. La noticia es buena: hay cosecha. Lo que sigue es fiesta, y luego desenfreno.</p>
+  <div class="meta">
+    <span>Fecha</span><b>16.10.2026</b>
+  </div>
+  <div class="barcode" aria-hidden="true"></div>
+  <a class="dl" href="escena-hermes-storyboard.pdf" download>↓ Descargar PDF</a>
+</header>
+
+<main>
+
+  <!-- ============ CUADRO 1 ============ -->
+  <article class="panel">
+    <div class="panel-head">
+      <div class="num">01</div>
+      <div class="label"><b>La noticia</b>Plano general · picado</div>
+    </div>
+
+    <div class="col-a">
+    <div class="frame">
+      <span class="tape tl"></span><span class="tape br"></span>
+      <img src="img/c1.jpg" alt="Boceto a tinta: diez figuras agazapadas en posición felina bajo una gran forma vertical, con Hermes de pie entre ellas.">
+      <span class="stamp">Tensión</span>
+    </div>
+    <div class="caption"><span>“La noticia”</span><span>esc. 1/3</span></div>
+
+    <h2>Los felinos y el mensaje</h2>
+    <p class="sub">La manada espera. Hermes trae la orden.</p>
+
+    <div class="emo"><span class="k">Emociones</span><span class="chip dark">Agresividad</span><span class="arrow">→</span><span class="chip light">Tranquilidad y relajo</span></div>
+    <div class="pautas">
+      <div class="pautas-title"><span>Pautas físicas</span><span>E1</span></div>
+      <dl>
+        <dt>Animal</dt><dd>Gato</dd>
+        <dt>Tensión</dt><dd><span class="tension"><b>7</b><span class="bar" aria-label="7 de 10"></span></span></dd>
+      </dl>
+    </div>
+
+    </div>
+    <div class="col-b">
+    <div class="spec">
+      <div class="row"><span class="k">Plano</span><span class="v">General, ligeramente picado, para ver a todo el grupo y el paisaje.</span></div>
+      <div class="row"><span class="k">Acción</span><span class="v">10 intérpretes en posición de felino (cuadrupedia baja, peso adelante, cabeza en alerta). Todos miran hacia un mismo punto fuera de cuadro. Hermes entra o está en primer plano, de pie y en movimiento, y entrega un mensaje: puede ser un objeto o solo el gesto.</span></div>
+      <div class="row"><span class="k">Composición</span><span class="v"><ul>
+        <li>Los felinos en semicírculo o en diagonal escalonada, a distintas alturas (algunos más bajos, otros con la espalda arqueada).</li>
+        <li>Hermes rompe el patrón: es la única figura vertical.</li>
+      </ul></span></div>
+    </div>
+
+    <div class="intent"><span class="k">Intención</span>Tensión de manada esperando una orden. El mensaje es el detonante de todo lo que sigue.</div>
+    <div class="row" style="margin-top:14px"><span class="k">Intensidad</span><span class="v"><span class="meter"><i class="on"></i><i></i><i></i><i></i><i></i><i></i></span></span></div>
+  </div>
+  </article>
+
+  <div class="cut">corte · la noticia corre</div>
+
+  <!-- ============ CUADRO 2 ============ -->
+  <article class="panel">
+    <div class="panel-head">
+      <div class="num">02</div>
+      <div class="label"><b>¡Hay cosecha!</b>Plano general · frontal</div>
+    </div>
+
+    <div class="col-a">
+    <div class="frame">
+      <span class="tape tl"></span><span class="tape br"></span>
+      <img src="img/c2.jpg" alt="Boceto a tinta: cuatro parejas de portor y volante con los brazos en alto, y una figura saltando de alegría a la derecha. Texto: Alegría: hay cosecha.">
+      <span class="stamp">Fiesta</span>
+    </div>
+    <div class="caption"><span>“Alegría: ¡hay cosecha!”</span><span>esc. 2/3</span></div>
+
+    <h2>La fiesta de la cosecha</h2>
+    <p class="sub">Dobles alturas y trípode.</p>
+
+    <div class="emo"><span class="k">Emociones</span><span class="chip dark">Felicidad</span><span class="chip light">Optimismo</span></div>
+    <div class="pautas">
+      <div class="pautas-title"><span>Pautas físicas</span><span>E2</span></div>
+      <dl>
+        <dt>Elemento</dt><dd>Agua</dd>
+        <dt>Eukinética</dt><dd>Periférico</dd>
+        <dt>Foco</dt><dd>Externo</dd>
+        <dt>Gesto técnico</dt><dd>Dobles alturas · baile en doble altura</dd>
+      </dl>
+    </div>
+
+    </div>
+    <div class="col-b">
+    <div class="spec">
+      <div class="row"><span class="k">Plano</span><span class="v">General frontal, simétrico, para que se lea la simultaneidad.</span></div>
+      <div class="row"><span class="k">Acción</span><span class="v"><ul>
+        <li>Cuatro dobles alturas al mismo tiempo: las volantes suben a los hombros de los portores y bailan en altura. Las cuatro parejas quedan en línea o en arco.</li>
+      </ul></span></div>
+      <div class="row"><span class="k">Composición</span><span class="v"><ul>
+        <li>Las 4 parejas con las piernas de las volantes a la misma altura, para dar un efecto de “coro”.</li>
+        <li>El trípode a un lado, más bajo, actúa como ancla visual.</li>
+      </ul></span></div>
+    </div>
+
+    <div class="note"><span class="k">Nota técnica</span>Dejar espacio suficiente entre parejas, y entre parejas y trípode, para que una caída o ajuste no afecte a otros. En las dobles alturas, definir una señal común para la subida y el descenso simultáneos.</div>
+
+    <div class="intent"><span class="k">Intención</span>La noticia se vuelve celebración: hay cosecha. Alegría colectiva, ordenada y en coro.</div>
+    <div class="row" style="margin-top:14px"><span class="k">Intensidad</span><span class="v"><span class="meter"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></span></span></div>
+  </div>
+  </article>
+
+  <div class="cut">corte · se desata</div>
+
+  <!-- ============ CUADRO 3 ============ -->
+  <article class="panel">
+    <div class="panel-head">
+      <div class="num">03</div>
+      <div class="label"><b>Desenfreno</b>Plano general amplio</div>
+    </div>
+
+    <div class="col-a">
+    <div class="frame">
+      <span class="tape tl"></span><span class="tape br"></span>
+      <img src="img/c3.jpg" alt="Boceto a tinta: figuras en fiesta, portores con volantes en altura, verticales de manos y ruedas, bajo grandes llamas. Texto: Elemento fuego, periférico rápido, júbilo, catarsis.">
+      <span class="stamp">Máximo</span>
+    </div>
+    <div class="caption"><span>“Fiesta.”</span><span>esc. 3/3</span></div>
+
+    <h2>Fiesta y desenfreno máximo</h2>
+    <p class="sub">Imagen colectiva coreográfica.</p>
+
+    <div class="emo"><span class="k">Emociones</span><span class="chip dark">Júbilo</span><span class="chip light">Catarsis</span></div>
+    <div class="pautas">
+      <div class="pautas-title"><span>Pautas físicas</span><span>E3</span></div>
+      <dl>
+        <dt>Elemento</dt><dd>Fuego</dd>
+        <dt>Eukinética</dt><dd>Periférico rápido / interno lento</dd>
+        <dt>Recurso</dt><dd>Torniquetes</dd>
+        <dt>Gesto técnico</dt><dd>4 rock’n’rolls simultáneos</dd>
+      </dl>
+    </div>
+
+    </div>
+    <div class="col-b">
+    <div class="spec">
+      <div class="row"><span class="k">Plano</span><span class="v">General amplio.</span></div>
+      <div class="row"><span class="k">Acción</span><span class="v">La fiesta llega a su punto máximo y los 11 intérpretes quedan congelados en una imagen coral, como si fuera el final de una coreografía.</span></div>
+      <div class="row"><span class="k">Composición</span><span class="v"><ul>
+        <li>Todos con la mirada hacia el mismo punto, para cerrar con la unidad con la que empezó el cuadro 1.</li>
+      </ul></span></div>
+    </div>
+
+    <div class="intent"><span class="k">Intención</span>El exceso total de la fiesta, detenido en seco. La manada vuelve a ser una sola.</div>
+    <div class="row" style="margin-top:14px"><span class="k">Intensidad</span><span class="v"><span class="meter"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></span></div>
+  </div>
+  </article>
+
+</main>
+
+<footer>
+  <b>Escena Hermes</b> · storyboard de trabajo · fuente: “Escena hermes.pdf” (V. Leal B.) + bocetos a tinta
+</footer>
+
+</body>
+</html>
